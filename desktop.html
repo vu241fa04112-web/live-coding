@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desktop Bento Grid Layout — VaultFlow AI</title>
+  <!-- Google Fonts for Modern Bento Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="desktop.css">
+</head>
+<body>
+
+  <!-- Layout Header & Navigation -->
+  <header class="page-header">
+    <div class="header-info">
+      <h1>
+        VaultFlow AI
+        <span class="badge-tag">Desktop Layout</span>
+      </h1>
+      <p>Wealth & FinTech Bento Grid Architecture &bull; 4 Columns &times; 3 Rows Asymmetric Grid</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn-nav btn-nav-secondary" id="toggleGridBtn" onclick="toggleGridOverlay()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="3" y1="9" x2="21" y2="9"></line>
+          <line x1="3" y1="15" x2="21" y2="15"></line>
+          <line x1="9" y1="3" x2="9" y2="21"></line>
+          <line x1="15" y1="3" x2="15" y2="21"></line>
+        </svg>
+        Toggle Grid Inspect
+      </button>
+      <a href="mobile.html" class="btn-nav btn-nav-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12.01" y2="18"></line>
+        </svg>
+        View Mobile Layout &rarr;
+      </a>
+      <a href="index.html" class="btn-nav btn-nav-secondary">
+        Side-by-Side Hub
+      </a>
+    </div>
+  </header>
+
+  <!-- Bento Grid Main Canvas -->
+  <main class="bento-desktop-container">
+    <div class="bento-grid" id="mainBentoGrid">
+
+      <!-- =========================================================
+           CARD 1: Top-Left (Linen Cream) - Auto Compound Investments
+           CSS Grid: Column 1 / 2, Row 1 / 2
+           ========================================================= -->
+      <article class="bento-card card-invest" data-grid-area="Col 1 / Row 1">
+        <span class="card-num">#01</span>
+        <h2>
+          Automate and compound investments <span class="accent-emerald">quicker.</span>
+        </h2>
+        
+        <div class="invest-action-wrapper">
+          <button class="btn-action-gold">
+            <span>Invest Funds</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </button>
+          
+          <!-- Mock Pointer Cursor -->
+          <svg class="cursor-pointer-icon" width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M4 3L11.5 20.5L14.5 13.5L21.5 10.5L4 3Z" fill="#0f172a" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           CARD 2: Bottom-Left (Amber Gold) - AI Retirement Planner
+           CSS Grid: Column 1 / 2, Row 2 / 4 (Spans 2 Rows vertically)
+           ========================================================= -->
+      <article class="bento-card card-ai-plan" data-grid-area="Col 1 / Row 2-3">
+        <span class="card-num">#02</span>
+        <h2>
+          Plan your retirement using AI.
+        </h2>
+
+        <!-- Simulated Mobile Financial Advisor Prompt Device -->
+        <div class="mock-advisor-device">
+          <!-- Investor Prompt -->
+          <div class="advisor-bubble bubble-investor">
+            <div style="flex:1;">
+              <strong>Investor:</strong> What's the optimal DCA split for $5k/mo across S&amp;P 500 and yield?
+            </div>
+            <div class="investor-avatar-circle">
+              &#128100;
+            </div>
+          </div>
+
+          <!-- AI Financial Advisor Reply -->
+          <div class="advisor-bubble bubble-ai-advisor">
+            <svg class="sparkle-mint-icon" viewBox="0 0 24 24" fill="var(--color-emerald-deep)">
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+            </svg>
+            <div style="flex:1;">
+              <strong>VaultFlow:</strong> Allocated 65% VOO, 25% Treasury Yield, 10% Gold. Projected 11.4% CAGR...
+            </div>
+          </div>
+
+          <!-- Floating Execute Button -->
+          <div class="plan-execute-fab" title="Execute Allocation">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2B1800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           CARD 3: Top-Center Hero (Deep Forest Emerald)
+           CSS Grid: Column 2 / 4 (Spans 2 Columns horizontally), Row 1 / 2
+           ========================================================= -->
+      <article class="bento-card card-hero" data-grid-area="Col 2-3 / Row 1">
+        <span class="card-num" style="color:#a7f3d0; opacity:0.4;">#03 HERO</span>
+        <h2>
+          Grow Wealth <span class="multiplier">10x</span> <span class="italic-word">Smarter</span> with AI
+        </h2>
+
+        <div class="hero-rating-block">
+          <div class="rating-stars">
+            <!-- 5 Golden Stars -->
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>Over 48,000 Verified Investors &bull; $2.4B Assets Tracked</p>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           CARD 4: Right-Column Tall (Frosted Mint) - Cashflow Analytics
+           CSS Grid: Column 4 / 5, Row 1 / 3 (Spans 2 Rows vertically)
+           ========================================================= -->
+      <article class="bento-card card-cashflow" data-grid-area="Col 4 / Row 1-2">
+        <span class="card-num">#04</span>
+        <h2>
+          Smart cashflow &amp; spending analytics.
+        </h2>
+
+        <div class="cashflow-chart-card">
+          <div class="chart-header-title">Weekly Expense Flow</div>
+          
+          <div class="day-pills-row">
+            <span class="day-pill active">Mon</span>
+            <span class="day-pill">Tue</span>
+            <span class="day-pill">Wed</span>
+            <span class="day-pill">Thu</span>
+            <span class="day-pill">Fri</span>
+          </div>
+
+          <div class="status-badge-row">
+            <span class="badge-optimal">&bull; 28% Below Budget</span>
+          </div>
+
+          <!-- Bar Chart Visual -->
+          <div class="bar-chart-visual">
+            <div class="bar-col"><div class="bar-fill bar-1"></div></div>
+            <div class="bar-col"><div class="bar-fill bar-2"></div></div>
+            <div class="bar-col"><div class="bar-fill bar-3"></div></div>
+            <div class="bar-col"><div class="bar-fill bar-4"></div></div>
+            <div class="bar-col"><div class="bar-fill bar-5"></div></div>
+          </div>
+
+          <div class="chart-time-labels">
+            <span>$40</span>
+            <span>$85</span>
+            <span>$160</span>
+            <span>$110</span>
+            <span>$140</span>
+          </div>
+        </div>
+
+        <p class="cashflow-card-footer">
+          Automate expense categorization and predictive budgeting to maximize your monthly savings rate effortlessly.
+        </p>
+      </article>
+
+      <!-- =========================================================
+           CARD 5: Middle-Left (White) - Multi-Bank Sync
+           CSS Grid: Column 2 / 3, Row 2 / 3
+           ========================================================= -->
+      <article class="bento-card card-multi-bank" data-grid-area="Col 2 / Row 2">
+        <span class="card-num">#05</span>
+        <div class="institution-pill-stack">
+          <div class="institution-pill">
+            <div class="pill-icon" style="background:#e0f2fe; color:#0284c7;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 1L2 6v2h20V6L12 1zm-8 8v9h2V9H4zm5 0v9h2V9H9zm5 0v9h2V9h-2zm5 0v9h2V9h-2zM2 20v2h20v-2H2z"/>
+              </svg>
+            </div>
+            <div class="pill-meta">
+              <span class="pill-handle">@ChaseBank</span>
+              <span class="pill-stat">Connected</span>
+            </div>
+          </div>
+
+          <div class="institution-pill">
+            <div class="pill-icon" style="background:#fef3c7; color:#b45309;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 14.5h-2v-1.12a3.5 3.5 0 01-1.84-.73l.73-1.47a2.5 2.5 0 001.31.55c.67 0 1.1-.34 1.1-.85 0-.58-.45-.85-1.42-1.17-1.4-.46-2.28-1-2.28-2.22 0-1.15.84-2 2.4-2.19V6.5h2v1.1a3.1 3.1 0 011.51.58l-.66 1.45a2.1 2.1 0 00-1-.44c-.65 0-.95.34-.95.77 0 .52.39.77 1.34 1.09 1.48.51 2.36 1.08 2.36 2.33 0 1.25-.87 2.05-2.6 2.22z"/>
+              </svg>
+            </div>
+            <div class="pill-meta">
+              <span class="pill-handle">@CoinbasePro</span>
+              <span class="pill-stat">Live Sync</span>
+            </div>
+          </div>
+        </div>
+
+        <h2>
+          Connect multiple banks and investment accounts.
+        </h2>
+      </article>
+
+      <!-- =========================================================
+           CARD 6: Middle-Right (Amber Gold) - Auto-Invest Schedule
+           CSS Grid: Column 3 / 4, Row 2 / 3
+           ========================================================= -->
+      <article class="bento-card card-schedule" data-grid-area="Col 3 / Row 2">
+        <span class="card-num">#06</span>
+        <h2>
+          Maintain a disciplined auto-invest schedule.
+        </h2>
+
+        <div class="schedule-widget-box">
+          <div class="schedule-widget-header">
+            <span>September 2026</span>
+            <span>Cycle 1</span>
+          </div>
+
+          <div class="schedule-check-grid">
+            <div class="check-item">
+              <div class="check-circle">&#10003;</div>
+              <span style="font-size:9.5px; font-weight:700;">Auto-DCA</span>
+            </div>
+            <div class="check-item">
+              <div class="check-circle">&#10003;</div>
+              <span style="font-size:9.5px; font-weight:700;">Index 500</span>
+            </div>
+            <div class="check-item">
+              <div class="check-circle">&#10003;</div>
+              <span style="font-size:9.5px; font-weight:700;">Treasury</span>
+            </div>
+            <div class="check-item">
+              <div class="check-circle">&#10003;</div>
+              <span style="font-size:9.5px; font-weight:700;">Yield</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           CARD 7: Bottom-Middle (White) - >72% Higher Savings
+           CSS Grid: Column 2 / 3, Row 3 / 4
+           ========================================================= -->
+      <article class="bento-card card-metric-savings" data-grid-area="Col 2 / Row 3">
+        <span class="card-num">#07</span>
+        <div>
+          <div class="big-metric-value">&gt;72%</div>
+          <div class="metric-subtext">higher average annual savings</div>
+        </div>
+
+        <div class="investor-avatar-group">
+          <div class="investor-avatar inv-1" title="Private Wealth Client">&#128104;&#8205;&#128188;</div>
+          <div class="investor-avatar inv-2" title="Tech Founder">&#128105;&#8205;&#128188;</div>
+          <div class="investor-avatar inv-3" title="Angel Investor">&#129489;&#8205;&#128188;</div>
+        </div>
+      </article>
+
+      <!-- =========================================================
+           CARD 8: Bottom-Right Wide (Emerald) - Autonomous Yield
+           CSS Grid: Column 3 / 5 (Spans 2 Columns), Row 3 / 4
+           ========================================================= -->
+      <article class="bento-card card-portfolio-scale" data-grid-area="Col 3-4 / Row 3">
+        <span class="card-num" style="color:#a7f3d0; opacity:0.35;">#08</span>
+        
+        <!-- Floating Portfolio Mini-Card -->
+        <div class="portfolio-widget-card">
+          <div class="portfolio-widget-header">Portfolio Balance</div>
+          <div class="portfolio-widget-number">
+            $184,520 <span class="badge-growth">+340%</span>
+          </div>
+
+          <div class="portfolio-mini-bars">
+            <div class="mini-bar mb-1"></div>
+            <div class="mini-bar mb-2"></div>
+            <div class="mini-bar mb-3"></div>
+            <div class="mini-bar mb-4"></div>
+          </div>
+
+          <div class="portfolio-pill-footer">
+            <div class="pill-arrow-circle">&uarr;</div>
+            <div class="pill-total-text">Yield: $14,250</div>
+            <span class="pill-percent-badge">+28%</span>
+          </div>
+        </div>
+
+        <h2>
+          Compound returns with 24/7 autonomous rebalancing.
+        </h2>
+      </article>
+
+    </div>
+  </main>
+
+  <script>
+    function toggleGridOverlay() {
+      const container = document.getElementById('mainBentoGrid');
+      container.classList.toggle('grid-overlay-active');
+      const btn = document.getElementById('toggleGridBtn');
+      if (container.classList.contains('grid-overlay-active')) {
+        btn.style.background = '#064e3b';
+        btn.style.color = '#34d399';
+      } else {
+        btn.style.background = 'white';
+        btn.style.color = 'var(--color-dark)';
+      }
+    }
+  </script>
+</body>
+</html>
