@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bento Grid Layout Experiments — VaultFlow AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #091310;
+      --card-bg: #121f1a;
+      --border: #1e332b;
+      --accent-emerald: #064e3b;
+      --accent-mint: #34d399;
+      --accent-amber: #f59e0b;
+      --accent-gold: #fbbf24;
+      --text-main: #f3f9f6;
+      --text-muted: #8fa89e;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      padding: 32px 24px 80px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, #122921 0%, #0d1a15 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px 32px;
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge-pill {
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: #a7f3d0;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-banner h1 {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+
+    .hero-banner p {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 820px;
+    }
+
+    /* Layout Quick Launch Cards */
+    .launch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .launch-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+
+    .launch-card:hover {
+      border-color: rgba(52, 211, 153, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    }
+
+    .launch-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .tag-desktop {
+      background: rgba(6, 78, 59, 0.45);
+      color: #a7f3d0;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .tag-mobile {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fde047;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .launch-card h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .launch-card p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .btn-launch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #047857;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+
+    .btn-launch:hover {
+      background: #059669;
+    }
+
+    .btn-launch-secondary {
+      background: #1b2f27;
+      color: #fff;
+    }
+
+    .btn-launch-secondary:hover {
+      background: #254237;
+    }
+
+    /* Tabs for Live Comparison */
+    .preview-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+
+    .tab-bar {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: #162620;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: #047857;
+      color: white;
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: #1e362d;
+      color: var(--text-main);
+    }
+
+    /* Live Preview Frames */
+    .preview-container {
+      width: 100%;
+      height: 820px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #f6f3ed;
+    }
+
+    .preview-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .split-view-container {
+      display: none;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      height: 820px;
+    }
+
+    .split-col {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #f6f3ed;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .split-header {
+      background: #121f1a;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .split-col iframe {
+      width: 100%;
+      flex: 1;
+      border: none;
+    }
+
+    /* Box Architecture Spec Table */
+    .spec-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+    }
+
+    .spec-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .spec-table th, .spec-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spec-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .code-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      background: #1a2e26;
+      color: #34d399;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .color-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Hero Banner -->
+    <header class="hero-banner">
+      <span class="badge-pill">Bento Grid Experiments &bull; Topic: VaultFlow AI (Wealth &amp; FinTech)</span>
+      <h1>Responsive Bento Grid Layout Architecture</h1>
+      <p>
+        Dual-layout implementation demonstrating how the 4-column asymmetric Bento Grid on Desktop (Picture 1) gracefully maps to a high-conversion vertical narrative stack on Mobile (Picture 2).
+      </p>
+    </header>
+
+    <!-- Quick Launch Cards -->
+    <div class="launch-grid">
+      <!-- Desktop File Card -->
+      <div class="launch-card">
+        <div>
+          <div class="launch-card-header">
+            <span class="tag-desktop">Picture 1 &bull; Desktop</span>
+            <span class="code-tag">desktop.html</span>
+          </div>
+          <h2>Desktop Bento Grid</h2>
+          <p>
+            4-Column &times; 3-Row asymmetric CSS Grid. Features horizontal spans for Hero (#03) and Portfolio (#08), and vertical spans for Retirement Planner (#02) and Cashflow (#04).
+          </p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="desktop.html" target="_blank" class="btn-launch" style="flex:1;">
+            Open desktop.html &nearr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile File Card -->
+      <div class="launch-card">
+        <div>
+          <div class="launch-card-header">
+            <span class="tag-mobile">Picture 2 &bull; Mobile</span>
+            <span class="code-tag">mobile.html</span>
+          </div>
+          <h2>Mobile Bento Sequence</h2>
+          <p>
+            1-Column linear stack optimized for mobile viewports. Re-ordered starting with the Hero proposition, followed by multi-bank sync and auto-invest habits.
+          </p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="mobile.html" target="_blank" class="btn-launch btn-launch-secondary" style="flex:1;">
+            Open mobile.html &nearr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Preview Section with Tabs -->
+    <section class="preview-section">
+      <div class="tab-bar">
+        <button class="tab-btn active" id="tabSplit" onclick="switchTab('split')">
+          ⚡ Side-by-Side Comparison
+        </button>
+        <button class="tab-btn" id="tabDesktop" onclick="switchTab('desktop')">
+          🖥️ Full Desktop (desktop.html)
+        </button>
+        <button class="tab-btn" id="tabMobile" onclick="switchTab('mobile')">
+          📱 Full Mobile (mobile.html)
+        </button>
+      </div>
+
+      <!-- Side-by-Side View -->
+      <div class="split-view-container" id="splitView" style="display: grid;">
+        <div class="split-col">
+          <div class="split-header">
+            <span>Desktop Bento Grid (4-Columns)</span>
+            <a href="desktop.html" target="_blank" style="color:#a7f3d0; text-decoration:none;">Open Separate &rarr;</a>
+          </div>
+          <iframe src="desktop.html" title="Desktop Preview"></iframe>
+        </div>
+
+        <div class="split-col">
+          <div class="split-header">
+            <span>Mobile Bento View (Single Column)</span>
+            <a href="mobile.html" target="_blank" style="color:#fde047; text-decoration:none;">Open Separate &rarr;</a>
+          </div>
+          <iframe src="mobile.html" title="Mobile Preview"></iframe>
+        </div>
+      </div>
+
+      <!-- Single Desktop View Frame -->
+      <div class="preview-container" id="singleDesktopView" style="display: none;">
+        <iframe src="desktop.html" title="Desktop Live View"></iframe>
+      </div>
+
+      <!-- Single Mobile View Frame -->
+      <div class="preview-container" id="singleMobileView" style="display: none; max-width: 480px; margin: 0 auto;">
+        <iframe src="mobile.html" title="Mobile Live View"></iframe>
+      </div>
+    </section>
+
+    <!-- Box Specification Table -->
+    <section class="spec-card">
+      <h3>Layout Architecture &amp; Box Mapping</h3>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Box #</th>
+            <th>FinTech Component Content</th>
+            <th>Color Palette</th>
+            <th>Desktop Grid Coordinates</th>
+            <th>Mobile Stack Sequence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>#01</strong></td>
+            <td>Automate &amp; Compound Investments Quicker</td>
+            <td><span class="color-dot" style="background:#faf6ee; border:1px solid #ccc;"></span>Linen Cream (#FAF6EE)</td>
+            <td><span class="code-tag">col: 1 / 2; row: 1 / 2</span></td>
+            <td>Sequence #07</td>
+          </tr>
+          <tr>
+            <td><strong>#02</strong></td>
+            <td>Plan Retirement Using AI (Financial Advisor)</td>
+            <td><span class="color-dot" style="background:#f59e0b;"></span>Amber Gold (#F59E0B)</td>
+            <td><span class="code-tag">col: 1 / 2; row: 2 / 4 (span 2)</span></td>
+            <td>Sequence #08</td>
+          </tr>
+          <tr>
+            <td><strong>#03</strong></td>
+            <td>Grow Wealth 10x Smarter with AI (Hero)</td>
+            <td><span class="color-dot" style="background:#064e3b;"></span>Deep Forest Emerald (#064E3B)</td>
+            <td><span class="code-tag">col: 2 / 4 (span 2); row: 1 / 2</span></td>
+            <td>Sequence #01 (Top Hero)</td>
+          </tr>
+          <tr>
+            <td><strong>#04</strong></td>
+            <td>Weekly Cashflow &amp; Expense Analytics</td>
+            <td><span class="color-dot" style="background:#d1fae5;"></span>Frosted Mint (#D1FAE5)</td>
+            <td><span class="code-tag">col: 4 / 5; row: 1 / 3 (span 2)</span></td>
+            <td>Sequence #04</td>
+          </tr>
+          <tr>
+            <td><strong>#05</strong></td>
+            <td>Connect Multiple Banks &amp; Investment Accounts</td>
+            <td><span class="color-dot" style="background:#ffffff; border:1px solid #ccc;"></span>Pure White (#FFFFFF)</td>
+            <td><span class="code-tag">col: 2 / 3; row: 2 / 3</span></td>
+            <td>Sequence #02</td>
+          </tr>
+          <tr>
+            <td><strong>#06</strong></td>
+            <td>Disciplined Auto-Invest Schedule &amp; Habit</td>
+            <td><span class="color-dot" style="background:#f59e0b;"></span>Amber Gold (#F59E0B)</td>
+            <td><span class="code-tag">col: 3 / 4; row: 2 / 3</span></td>
+            <td>Sequence #03</td>
+          </tr>
+          <tr>
+            <td><strong>#07</strong></td>
+            <td>&gt;72% Higher Average Annual Savings</td>
+            <td><span class="color-dot" style="background:#ffffff; border:1px solid #ccc;"></span>Pure White (#FFFFFF)</td>
+            <td><span class="code-tag">col: 2 / 3; row: 3 / 4</span></td>
+            <td>Sequence #06</td>
+          </tr>
+          <tr>
+            <td><strong>#08</strong></td>
+            <td>Autonomous 24/7 Rebalancing &amp; Yield</td>
+            <td><span class="color-dot" style="background:#064e3b;"></span>Deep Forest Emerald (#064E3B)</td>
+            <td><span class="code-tag">col: 3 / 5 (span 2); row: 3 / 4</span></td>
+            <td>Sequence #05</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <script>
+    function switchTab(tab) {
+      const splitView = document.getElementById('splitView');
+      const singleDesktop = document.getElementById('singleDesktopView');
+      const singleMobile = document.getElementById('singleMobileView');
+      
+      const tabSplit = document.getElementById('tabSplit');
+      const tabDesktop = document.getElementById('tabDesktop');
+      const tabMobile = document.getElementById('tabMobile');
+
+      // Reset tabs
+      [tabSplit, tabDesktop, tabMobile].forEach(t => t.classList.remove('active'));
+
+      if (tab === 'split') {
+        tabSplit.classList.add('active');
+        splitView.style.display = 'grid';
+        singleDesktop.style.display = 'none';
+        singleMobile.style.display = 'none';
+      } else if (tab === 'desktop') {
+        tabDesktop.classList.add('active');
+        splitView.style.display = 'none';
+        singleDesktop.style.display = 'block';
+        singleMobile.style.display = 'none';
+      } else if (tab === 'mobile') {
+        tabMobile.classList.add('active');
+        splitView.style.display = 'none';
+        singleDesktop.style.display = 'none';
+        singleMobile.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
